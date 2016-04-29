@@ -12,3 +12,13 @@ end
 def switch
   click_button('Next')
 end
+
+def attack_to_death
+  18.times { attack_and_next }
+  attack
+end
+
+def attack_and_next
+  click_button('Attack!')
+  click_button('Next')
+end

@@ -14,4 +14,14 @@ class Game
     @players[0], @players[1] = @players[1], @players[0]
   end
 
+  def game_over?
+    dead_player?
+  end
+
+  private
+
+  def dead_player?
+    players[1].hit_points == 0 || players[0].hit_points == 0
+  end
+
 end

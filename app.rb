@@ -26,9 +26,16 @@ class Battle < Sinatra::Base
     erb(:play)
   end
 
+  get '/death' do
+    erb(:death)
+  end
+
   get '/attack' do
     @game = $game
     @game.attack
+    if @game.game_over?
+      redirect '/death'
+    end
     erb(:attack)
   end
 
