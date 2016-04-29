@@ -14,6 +14,7 @@ def switch
 end
 
 def attack_to_death
+  allow(Kernel).to receive(:rand) {10}
   18.times { attack_and_next }
   attack
 end

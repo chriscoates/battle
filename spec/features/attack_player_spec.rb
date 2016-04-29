@@ -10,6 +10,7 @@ end
 
 feature 'Attack reduces Hit Points' do
   scenario "Player 1's attack reduces Player 2's HP" do
+    allow(Kernel).to receive(:rand) {10}
     sign_in_and_play
     attack
     expect(page).to have_content("Chris's HP reduced to 90!")

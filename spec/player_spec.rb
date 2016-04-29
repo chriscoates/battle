@@ -18,6 +18,7 @@ describe Player do
 
   describe '#lose_hit_points' do
     it "reduces the other players's hit points" do
+      allow(Kernel).to receive(:rand) {10}
       expect {amy.lose_hit_points}.to change { amy.hit_points }.by(-10)
     end
   end
