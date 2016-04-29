@@ -1,27 +1,35 @@
 class Game
 
-  attr_reader :players
+	attr_reader :players
 
-  def initialize(player1, player2)
-    @players = [player1,player2]
-  end
+	def self.create(player1, player2)
+		@game = Game.new(player1, player2)
+	end
 
-  def attack
-    players[1].lose_hit_points
-  end
+	def self.instance
+		@game
+	end
 
-  def switch
-    @players[0], @players[1] = @players[1], @players[0]
-  end
+	def initialize(player1, player2)
+		@players = [player1,player2]
+	end
 
-  def game_over?
-    dead_player?
-  end
+	def attack
+		players[1].lose_hit_points
+	end
 
-  private
+	def switch
+		@players[0], @players[1] = @players[1], @players[0]
+	end
 
-  def dead_player?
-    players[1].hit_points == 0 || players[0].hit_points == 0
-  end
+	def game_over?
+		dead_player?
+	end
+
+	private
+
+	def dead_player?
+		players[1].hit_points == 0 || players[0].hit_points == 0
+	end
 
 end

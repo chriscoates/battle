@@ -11,18 +11,20 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $game = Game.new(Player.new(params[:name1]), Player.new(params[:name2]))
+    Game.create(Player.new(params[:name1]), Player.new(params[:name2]))
     redirect '/play'
   end
 
+  before do
+    @game = Game.instance
+  end
+
   post '/switch' do
-    @game = $game
     @game.switch
     redirect '/play'
   end
 
   get '/play' do
-    @game = $game
     erb(:play)
   end
 
@@ -31,7 +33,6 @@ class Battle < Sinatra::Base
   end
 
   get '/attack' do
-    @game = $game
     @game.attack
     if @game.game_over?
       redirect '/death'
@@ -39,7 +40,7 @@ class Battle < Sinatra::Base
     erb(:attack)
   end
 
-  #start the server if ruby file executed directly
-  run! if app_file == $0
+#start the server if ruby file executed directly
+run! if app_file == $0
 
 end
